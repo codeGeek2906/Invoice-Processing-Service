@@ -20,6 +20,7 @@ public class KafkaProducerService {
     }
 
     public void publishInvoiceUploadedEvent(String bucket, String key) {
+        log.info("Entering publishInvoiceUploadedEvent with bucket: {}, key: {}", bucket, key);
         String message = "{\"bucket\":\"" + bucket + "\",\"key\":\"" + key + "\"}";
         kafkaTemplate.send(invoiceTopic, message);
         log.info("Published invoice event to topic {}: {}", invoiceTopic, message);
